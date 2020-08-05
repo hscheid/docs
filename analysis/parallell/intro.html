@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Declarative programming · PEP root6 workshop</title>
+        <title>Threads and processes · PEP root6 workshop</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -61,10 +61,10 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="TDataFrame.html" />
+    <link rel="next" href="example.html" />
     
     
-    <link rel="prev" href="declarative.html" />
+    <link rel="prev" href="../parallellism.html" />
     
 
     </head>
@@ -191,9 +191,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.5.1" data-path="../parallell/intro.html">
+        <li class="chapter active" data-level="1.5.1" data-path="intro.html">
             
-                <a href="../parallell/intro.html">
+                <a href="intro.html">
             
                     
                     Threads and processes
@@ -204,9 +204,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.2" data-path="../parallell/example.html">
+        <li class="chapter " data-level="1.5.2" data-path="example.html">
             
-                <a href="../parallell/example.html">
+                <a href="example.html">
             
                     
                     Posix multithreading
@@ -217,9 +217,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.3" data-path="../parallell/root.html">
+        <li class="chapter " data-level="1.5.3" data-path="root.html">
             
-                <a href="../parallell/root.html">
+                <a href="root.html">
             
                     
                     Parallellism with ROOT
@@ -261,9 +261,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.8" data-path="declarative.html">
+        <li class="chapter " data-level="1.8" data-path="../tdf/declarative.html">
             
-                <a href="declarative.html">
+                <a href="../tdf/declarative.html">
             
                     
                     Part 7 - Declarative analysis
@@ -275,9 +275,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="1.8.1" data-path="concept.html">
+        <li class="chapter " data-level="1.8.1" data-path="../tdf/concept.html">
             
-                <a href="concept.html">
+                <a href="../tdf/concept.html">
             
                     
                     Declarative programming
@@ -288,9 +288,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.8.2" data-path="TDataFrame.html">
+        <li class="chapter " data-level="1.8.2" data-path="../tdf/TDataFrame.html">
             
-                <a href="TDataFrame.html">
+                <a href="../tdf/TDataFrame.html">
             
                     
                     TDataFrame
@@ -301,9 +301,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.8.3" data-path="more.html">
+        <li class="chapter " data-level="1.8.3" data-path="../tdf/more.html">
             
-                <a href="more.html">
+                <a href="../tdf/more.html">
             
                     
                     Additional material
@@ -595,7 +595,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >Declarative programming</a>
+        <a href="../.." >Threads and processes</a>
     </h1>
 </div>
 
@@ -610,15 +610,79 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="declarative-programming">Declarative programming</h1>
-<p><strong>Declarative</strong> programming tells the program <strong>what</strong> to do, where an <strong>imparative</strong> approach is to tell it <strong>how</strong> to do something.</p>
-<p>You walk into a bar.
-<div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(1581663757);" id="order-ten-beers-for-you-and-you-friends"><i class="fa fa-square-o"></i> Order ten beers for you (and you friends)<span id="heading-1581663757"></span></h3></div><div class="panel-body" id="panel-1581663757"><p>You approach the barkeeper and...</p>
-<div class="panel panel-danger"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(3736290085);" id="imperativeclick-to-expand"><i class="fa fa-line-chart"></i> Imperative<span id="heading-3736290085">Click to expand</span></h3></div><div class="panel-body" style="display: none" id="panel-3736290085"><p><strong>Imperative (WHAT):</strong> ask him to to go over to the glasses, take one, go to the tap and pour a glass. Put it down and do so until he has ten, then give them to you and your friends.</p>
-</div></div><div class="panel panel-danger"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(7651645765);" id="declarativeclick-to-expand"><i class="fa fa-line-chart"></i> Declarative<span id="heading-7651645765">Click to expand</span></h3></div><div class="panel-body" style="display: none" id="panel-7651645765"><p><strong>Declarative (HOW):</strong> order ten beers.
-However, we have to keep in mind that this indicates that the barkeeper is able to interpret our order in the right way. So what declarative programming essentially does is add an additional high-level layer hiding the underlying control flow(<code>if...else, switch, for, while</code>).</p>
-</div></div></div></div></p>
-<p>Abstarction also gives the code more reusability in concerns of different data types. See <a href="">TDataSource</a>.</p>
+                                <h1 id="threads-and-processes">Threads and processes</h1>
+<p>A thread of execution is the <strong>smallest sequence of programmed instructions</strong> that can be managed independently by the operating system. The implementation of threads and processes differs between operating systems, but in most cases <strong>a thread is a component of a process</strong>. </p>
+<p><img src="thread.png" alt="thread"></p>
+<ul>
+<li>Multiple threads can exist within one process</li>
+<li>They execute concurrently and share resources such as memory </li>
+<li>Different processes do not share these resources</li>
+<li><p>The threads of a process share its executable code and the values of its variables at any given time</p>
+<p>So, to sum up</p>
+</li>
+<li><p>Processes are typically independent, while threads exist as subsets of a process</p>
+</li>
+<li>Processes carry considerably more state information than threads, whereas multiple threads within a process share process state as well as memory and other resources</li>
+<li>Processes have separate address spaces, whereas threads share their address space</li>
+<li>Processes interact only through system-provided inter-process communication mechanisms</li>
+<li>Context switching between threads in the same process is typically faster than context switching between processes.</li>
+</ul>
+<h2 id="multithreading">Multithreading</h2>
+<p>Single threading means (obviously) executing one single thread at a time. Multithreading allows multiple threads to exist within the context of one process. These threads <strong>share the process&apos;s resources</strong>, but are able to execute independently. </p>
+<h3 id="advantages">Advantages</h3>
+<ul>
+<li>Responsiveness: multithreading can allow an application to remain responsive to input. <ul>
+<li>In a one-thread program, if the main execution thread blocks on a long-running task, the entire application can appear to freeze. </li>
+<li>Moving the task to a worker thread,  it is possible for the application to remain responsive to user input while executing tasks in the background</li>
+<li>Note: most cases multithreading is not the only way to keep a program responsive, with non-blocking I/O and/or Unix signals being available for gaining similar results</li>
+</ul>
+</li>
+<li>Faster execution: multithreaded program allow faster operation on computer systems that have multiple CPUs or one or more multi-core processors, or across a cluster of machines<ul>
+<li>works only if the threads are independent, i.e. do not have to wait for one another</li>
+</ul>
+</li>
+<li>Lower resource consumption: using threads, an application can serve multiple clients concurrently using fewer resources than it would need when using multiple process copies of itself. <ul>
+<li>For example, the Apache HTTP server uses thread pools: a pool of listener threads for listening to incoming requests, and a pool of server threads for processing those requests.</li>
+</ul>
+</li>
+<li>Better system utilization: as an example, a file system using multiple threads can achieve higher throughput and lower latency since data in a faster medium (such as cache memory) can be retrieved by one thread while another thread retrieves data from a slower medium (such as external storage) with neither thread waiting for the other to finish.</li>
+<li>Simplified sharing and communication: unlike processes, which require a message passing or shared memory mechanism to perform inter-process communication (IPC), threads can communicate through data, code and files they already share.</li>
+<li>Parallelization: applications looking to use multicore or multi-CPU systems can use multithreading to split data and tasks into parallel subtasks and let the underlying architecture manage how the threads run, either concurrently on one core or in parallel on multiple cores. </li>
+</ul>
+<h3 id="drawbacks">Drawbacks</h3>
+<ul>
+<li>Synchronization: since threads share the same address space, the programmer must be careful to avoid race conditions and other non-intuitive behaviors. <ul>
+<li>In order for data to be correctly manipulated, threads will often need to rendezvous in time in order to process the data in the correct order. </li>
+</ul>
+</li>
+<li>Threads may also require mutually exclusive operations (often implemented using <code>mutexes</code>) in order to prevent common data from being simultaneously modified or read while in the process of being modified</li>
+<li>Thread crashes a process: an illegal operation performed by a thread crashes the entire process; therefore, one misbehaving thread can disrupt the processing of all the other threads in the application.</li>
+</ul>
+<p><div class="panel panel-primary"><div class="panel-heading"><h3 class="panel-title" onclick="javascript:toggle(282580898);" id="race-conditions-and-mutexes"><i class="fa fa-info-circle"></i> Race conditions and mutexes<span id="heading-282580898"></span></h3></div><div class="panel-body" id="panel-282580898"><p>Threads in the same process share the same address space. This allows concurrently running code to efficiently  exchange data without the overhead or complexity of an IPC. When shared between threads, however, even simple data structures become prone to <strong>race conditions</strong> if they require more than one CPU instruction to update: two threads may end up attempting to update the data structure at the same time and find it unexpectedly changing underfoot. Bugs caused by race conditions can be very difficult to reproduce and isolate.</p>
+<p><img src="cs.jpg" alt="cs"></p>
+<p>Let&apos;s look at this in practice and assume that two threads want to increment the value of a global integer variable by one. Ideally, the following sequence of operations would take place</p>
+<p><img src="tab1.png" alt="tab1"></p>
+<p>However, if the two threads run simultaneously without locking or synchronization, the outcome of the operation could be wrong</p>
+<p><img src="tab2.png" alt="tab2"></p>
+<p>To prevent this, threading application programming interfaces (APIs) offer synchronization primitives such as
+ <code>mutexes</code> to lock data structures against concurrent access. </p>
+<p>Mutex is a portmanteau of &apos;mutual exclusion&apos;: one thread of execution never enter its critical section at the same time that another concurrent thread of execution enters its own critical section.</p>
+<ul>
+<li>On uniprocessor systems, a thread running into a locked mutex must sleep and hence trigger a context switch</li>
+<li>On multi-processor systems, the thread may instead poll the mutex in a <code>spinlock</code> which intermittently checks if the mutex has been released</li>
+</ul>
+<p>Several mutexes exist, one that you often see</p>
+<ul>
+<li>Locks (usually just called <code>mutex</code>), behaving as described above</li>
+<li>Semaphores: simple data types. Consider a variable A and a boolean variable S. A is only accessed when S is marked true. Thus, S is a semaphore for A</li>
+<li>and many more (but we are not computer scientists)</li>
+</ul>
+<p>Mutexes make your code safe for race conditions, but as a trade-off, they can lead to <strong>deadlocks</strong>. A deadlock is a state in which each member of a group is waiting for some other member to take action, such as sending a message or more commonly releasing a lock. </p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/2/23/Deadlock_at_a_four-way-stop.gif" alt="deadlock"></p>
+<p>Conversely, one can also run into a <strong>livelock</strong>, where  the states of the processes involved in the livelock constantly change with regard to one another, none progressing. </p>
+<p>Most OSs cannot prevent deadlocks!</p>
+</div></div></p>
+<p>Hopefully, by now, you have a good idea of what multi threading and multi processing entails, what are the benefits, and what are the difficulties. Let&apos;s write our own little multi threader program now!</p>
 
                                 
                                 </section>
@@ -646,12 +710,12 @@ However, we have to keep in mind that this indicates that the barkeeper is able 
 
             
                 
-                <a href="declarative.html" class="navigation navigation-prev " aria-label="Previous page: Part 7 - Declarative analysis">
+                <a href="../parallellism.html" class="navigation navigation-prev " aria-label="Previous page: Part 4 - Parallellism">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="TDataFrame.html" class="navigation navigation-next " aria-label="Next page: TDataFrame">
+                <a href="example.html" class="navigation navigation-next " aria-label="Next page: Posix multithreading">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -662,7 +726,7 @@ However, we have to keep in mind that this indicates that the barkeeper is able 
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Declarative programming","level":"1.8.1","depth":2,"next":{"title":"TDataFrame","level":"1.8.2","depth":2,"path":"analysis/tdf/TDataFrame.md","ref":"analysis/tdf/TDataFrame.md","articles":[]},"previous":{"title":"Part 7 - Declarative analysis","level":"1.8","depth":1,"path":"analysis/tdf/declarative.md","ref":"analysis/tdf/declarative.md","articles":[{"title":"Declarative programming","level":"1.8.1","depth":2,"path":"analysis/tdf/concept.md","ref":"analysis/tdf/concept.md","articles":[]},{"title":"TDataFrame","level":"1.8.2","depth":2,"path":"analysis/tdf/TDataFrame.md","ref":"analysis/tdf/TDataFrame.md","articles":[]},{"title":"Additional material","level":"1.8.3","depth":2,"path":"analysis/tdf/more.md","ref":"analysis/tdf/more.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["katex","panels@git+https://github.com/lhcb/gitbook-plugin-panels.git#117012fdc18c96831cb88196980c0ea73b0c87b8","collapsible-menu","block-align"],"styles":{"website":"css/website.css"},"pluginsConfig":{"collapsible-menu":{},"block-align":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"panels":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"PEP root6 workshop","gitbook":"*","description":"PEP root6 introduction material"},"file":{"path":"analysis/tdf/concept.md","mtime":"2018-11-17T11:52:59.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-08-05T09:20:43.977Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Threads and processes","level":"1.5.1","depth":2,"next":{"title":"Posix multithreading","level":"1.5.2","depth":2,"path":"analysis/parallell/example.md","ref":"analysis/parallell/example.md","articles":[]},"previous":{"title":"Part 4 - Parallellism","level":"1.5","depth":1,"path":"analysis/parallellism.md","ref":"analysis/parallellism.md","articles":[{"title":"Threads and processes","level":"1.5.1","depth":2,"path":"analysis/parallell/intro.md","ref":"analysis/parallell/intro.md","articles":[]},{"title":"Posix multithreading","level":"1.5.2","depth":2,"path":"analysis/parallell/example.md","ref":"analysis/parallell/example.md","articles":[]},{"title":"Parallellism with ROOT","level":"1.5.3","depth":2,"path":"analysis/parallell/root.md","ref":"analysis/parallell/root.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["katex","panels@git+https://github.com/lhcb/gitbook-plugin-panels.git#117012fdc18c96831cb88196980c0ea73b0c87b8","collapsible-menu","block-align"],"styles":{"website":"css/website.css"},"pluginsConfig":{"collapsible-menu":{},"block-align":{},"search":{},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"panels":{},"katex":{},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"PEP root6 workshop","gitbook":"*","description":"PEP root6 introduction material"},"file":{"path":"analysis/parallell/intro.md","mtime":"2018-11-14T14:49:37.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-08-05T09:20:43.977Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
